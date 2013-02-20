@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#include "FlickrFetcher.h"
 
 @interface SPoTViewController : UIViewController
 

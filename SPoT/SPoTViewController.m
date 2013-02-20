@@ -17,13 +17,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    // Display the contents of the array returned from calling stanfordPhotos
+	NSLog(@"Array from calling stanfordPhotos");
+    NSLog(@"=================================");
+    NSLog(@"%@", [FlickrFetcher stanfordPhotos]);
 }
 
 @end
