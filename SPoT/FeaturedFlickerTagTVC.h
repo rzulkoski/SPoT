@@ -1,5 +1,5 @@
 //
-//  SPoTViewController.h
+//  FeaturedFlickerTagTVC.h
 //  SPoT
 //
 //  Created by Ryan Zulkoski on 2/20/13.
@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#include "FlickrFetcher.h"
 
-@interface SPoTViewController : UIViewController
+@interface FeaturedFlickerTagTVC : UITableViewController
 
 @end
