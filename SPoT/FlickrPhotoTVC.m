@@ -67,7 +67,9 @@
 
 - (NSString *)subtitleForRow:(NSUInteger)row
 {
-    return [self.photos[row][FLICKR_PHOTO_OWNER] description]; // description because could be NSNull
+    // This function has been modified by Ryan Zulkoski to return the Photo Description instead of the Photo Owner
+    // return [self.photos[row][FLICKR_PHOTO_OWNER] description]; // description because could be NSNull
+    return [[self.photos[row] valueForKeyPath:FLICKR_PHOTO_DESCRIPTION] description]; // description because could be NSNull
 }
 
 // loads up a table view cell with the title and owner of the photo at the given row in the Model

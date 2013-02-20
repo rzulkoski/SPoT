@@ -62,9 +62,9 @@
             }
         }
     }
-    // Sort the tags array by the description of the tag and return a copy of the resulting array
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:TAG_DESCRIPTION ascending:YES];
-    return [[tags sortedArrayUsingDescriptors:@[sortDescriptor]] copy];
+
+    // Sort the array of tags by tag description and return it
+    return [self sortArrayOfDictionaries:tags usingKey:TAG_DESCRIPTION];
 }
 
 #pragma mark - Table view data source
@@ -80,10 +80,59 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Flickr Tag" forIndexPath:indexPath];
     int tagCount = [self.tags[indexPath.row][TAG_INDEXES_OF_PHOTOS] count];
 
-    cell.textLabel.text = [self.tags[indexPath.row][TAG_DESCRIPTION] capitalizedString];
+    cell.textLabel.text = [self titleForRow:indexPath.row];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%d photo%@", tagCount, (tagCount == 1) ? @"" : @"s"];
     
     return cell;
+}
+
+- (NSString *)titleForRow:(NSUInteger)row
+{
+    return [self.tags[row][TAG_DESCRIPTION] capitalizedString];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([sender isKindOfClass:[UITableViewCell class]]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        if (indexPath) {
+            if ([segue.identifier isEqualToString:@"Show Photos For Tag"]) {
+                if ([segue.destinationViewController respondsToSelector:@selector(setPhotos:)]) {
+                    NSArray *photos = [self arrayOfPhotosWithTag:[[self titleForRow:indexPath.row] lowercaseString]];
+                    [segue.destinationViewController performSelector:@selector(setPhotos:) withObject:photos];
+                    [segue.destinationViewController setTitle:[self titleForRow:indexPath.row]];
+                }
+            }
+        }
+    }
+}
+
+- (NSArray *)arrayOfPhotosWithTag:(NSString *)tag
+{
+    NSMutableArray *photos = [[NSMutableArray alloc] init];
+    int indexOfTag = -1;
+    
+    // Find the index of the dictionary in our tags array for our given tag
+    for (int i = 0; i < [self.tags count]; i++) {
+        if ([self.tags[i][TAG_DESCRIPTION] isEqualToString:tag]) {
+            indexOfTag = i;
+        }
+    }
+    
+    if (indexOfTag >= 0) { // If we found the index for the dictionary, create the array of photos using our given tag
+        for (NSNumber *indexOfPhoto in self.tags[indexOfTag][TAG_INDEXES_OF_PHOTOS]) {
+            [photos addObject:self.photos[[indexOfPhoto intValue]]];
+        }
+    }
+    
+    // Sort the array of photos by their titles and return it
+    return [self sortArrayOfDictionaries:photos usingKey:FLICKR_PHOTO_TITLE];
+}
+
+- (NSArray *)sortArrayOfDictionaries:(NSArray *)array usingKey:(NSString *)key
+{
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:key ascending:YES];
+    return [array sortedArrayUsingDescriptors:@[sortDescriptor]];
 }
 
 #pragma mark - Table view delegate
