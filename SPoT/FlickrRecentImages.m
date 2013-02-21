@@ -34,7 +34,9 @@
         }
     }
     if (!foundImageInRecentImages) {
-        [recentImages removeLastObject];
+        if ([recentImages count] > MAX_RECENT_IMAGES - 1) {
+            [recentImages removeLastObject];
+        }
     }
     
     [recentImages insertObject:[mutableImage copy] atIndex:0];
@@ -51,11 +53,10 @@
 {
     NSArray *recentImages = [[NSUserDefaults standardUserDefaults] arrayForKey:RECENT_IMAGES_KEY];
     NSMutableArray *sortedRecentImages = [[RZTools sortArrayOfDictionaries:recentImages usingKey:FLICKR_LAST_VIEWED_KEY ascending:NO] mutableCopy];
-    
+
     while ([sortedRecentImages count] > MAX_RECENT_IMAGES) {
         [sortedRecentImages removeLastObject];
     }
-    
     return [sortedRecentImages copy];
 }
 
