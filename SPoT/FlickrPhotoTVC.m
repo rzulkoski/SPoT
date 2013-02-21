@@ -5,9 +5,11 @@
 //  Created by CS193p Instructor.
 //  Copyright (c) 2013 Stanford University. All rights reserved.
 //
+//  Ability to store recent images added by Ryan Zulkoski on 02/20/2013
 
 #import "FlickrPhotoTVC.h"
 #import "FlickrFetcher.h"
+#import "FlickrRecentImages.h"
 
 @implementation FlickrPhotoTVC
 
@@ -38,6 +40,7 @@
                     NSURL *url = [FlickrFetcher urlForPhoto:self.photos[indexPath.row] format:FlickrPhotoFormatLarge];
                     [segue.destinationViewController performSelector:@selector(setImageURL:) withObject:url];
                     [segue.destinationViewController setTitle:[self titleForRow:indexPath.row]];
+                    [FlickrRecentImages addImage:self.photos[indexPath.row]]; // Store this image as most recent image in NSUserDefaults
                 }
             }
         }

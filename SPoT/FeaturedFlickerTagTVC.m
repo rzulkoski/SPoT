@@ -8,6 +8,7 @@
 
 #import "FeaturedFlickerTagTVC.h"
 #import "FlickrFetcher.h"
+#import "RZTools.h"
 
 #define TAG_DESCRIPTION @"Tag_Desc"
 #define TAG_INDEXES_OF_PHOTOS @"Tag_Indexes_Of_Photos"
@@ -64,7 +65,7 @@
     }
 
     // Sort the array of tags by tag description and return it
-    return [self sortArrayOfDictionaries:tags usingKey:TAG_DESCRIPTION];
+    return [RZTools sortArrayOfDictionaries:tags usingKey:TAG_DESCRIPTION ascending:YES];
 }
 
 #pragma mark - Table view data source
@@ -126,13 +127,7 @@
     }
     
     // Sort the array of photos by their titles and return it
-    return [self sortArrayOfDictionaries:photos usingKey:FLICKR_PHOTO_TITLE];
-}
-
-- (NSArray *)sortArrayOfDictionaries:(NSArray *)array usingKey:(NSString *)key
-{
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:key ascending:YES];
-    return [array sortedArrayUsingDescriptors:@[sortDescriptor]];
+    return [RZTools sortArrayOfDictionaries:photos usingKey:FLICKR_PHOTO_TITLE ascending:YES];
 }
 
 @end

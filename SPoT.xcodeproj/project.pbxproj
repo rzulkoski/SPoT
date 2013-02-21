@@ -10,6 +10,9 @@
 		94CCF66C16D556D100DF3B53 /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94CCF66B16D556D100DF3B53 /* ImageViewController.m */; };
 		94CCF66F16D5593E00DF3B53 /* FlickrPhotoTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 94CCF66E16D5593E00DF3B53 /* FlickrPhotoTVC.m */; };
 		94CCF67A16D55EDF00DF3B53 /* FeaturedFlickerTagTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 94CCF67916D55EDF00DF3B53 /* FeaturedFlickerTagTVC.m */; };
+		94D7D3D216D5C3890045DBFE /* FlickrRecentImages.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D7D3D116D5C3890045DBFE /* FlickrRecentImages.m */; };
+		94D7D3D516D5C6200045DBFE /* RZTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D7D3D416D5C6200045DBFE /* RZTools.m */; };
+		94D7D3D816D5CEAF0045DBFE /* RecentFlickrPhotoTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 94D7D3D716D5CEAF0045DBFE /* RecentFlickrPhotoTVC.m */; };
 		94DE279C16D53DD9002CC6D7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94DE279B16D53DD9002CC6D7 /* UIKit.framework */; };
 		94DE279E16D53DD9002CC6D7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94DE279D16D53DD9002CC6D7 /* Foundation.framework */; };
 		94DE27A016D53DD9002CC6D7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94DE279F16D53DD9002CC6D7 /* CoreGraphics.framework */; };
@@ -30,6 +33,12 @@
 		94CCF66E16D5593E00DF3B53 /* FlickrPhotoTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FlickrPhotoTVC.m; path = ../FlickrPhotoTVC.m; sourceTree = "<group>"; };
 		94CCF67816D55EDF00DF3B53 /* FeaturedFlickerTagTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeaturedFlickerTagTVC.h; sourceTree = "<group>"; };
 		94CCF67916D55EDF00DF3B53 /* FeaturedFlickerTagTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeaturedFlickerTagTVC.m; sourceTree = "<group>"; };
+		94D7D3D016D5C3890045DBFE /* FlickrRecentImages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrRecentImages.h; sourceTree = "<group>"; };
+		94D7D3D116D5C3890045DBFE /* FlickrRecentImages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrRecentImages.m; sourceTree = "<group>"; };
+		94D7D3D316D5C6200045DBFE /* RZTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RZTools.h; sourceTree = "<group>"; };
+		94D7D3D416D5C6200045DBFE /* RZTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RZTools.m; sourceTree = "<group>"; };
+		94D7D3D616D5CEAF0045DBFE /* RecentFlickrPhotoTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentFlickrPhotoTVC.h; sourceTree = "<group>"; };
+		94D7D3D716D5CEAF0045DBFE /* RecentFlickrPhotoTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentFlickrPhotoTVC.m; sourceTree = "<group>"; };
 		94DE279816D53DD9002CC6D7 /* SPoT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SPoT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94DE279B16D53DD9002CC6D7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		94DE279D16D53DD9002CC6D7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -110,6 +119,12 @@
 				94DE27B316D53DD9002CC6D7 /* MainStoryboard.storyboard */,
 				94CCF67816D55EDF00DF3B53 /* FeaturedFlickerTagTVC.h */,
 				94CCF67916D55EDF00DF3B53 /* FeaturedFlickerTagTVC.m */,
+				94D7D3D616D5CEAF0045DBFE /* RecentFlickrPhotoTVC.h */,
+				94D7D3D716D5CEAF0045DBFE /* RecentFlickrPhotoTVC.m */,
+				94D7D3D016D5C3890045DBFE /* FlickrRecentImages.h */,
+				94D7D3D116D5C3890045DBFE /* FlickrRecentImages.m */,
+				94D7D3D316D5C6200045DBFE /* RZTools.h */,
+				94D7D3D416D5C6200045DBFE /* RZTools.m */,
 				94DE27A216D53DD9002CC6D7 /* Supporting Files */,
 			);
 			path = SPoT;
@@ -214,6 +229,9 @@
 				94CCF66C16D556D100DF3B53 /* ImageViewController.m in Sources */,
 				94CCF66F16D5593E00DF3B53 /* FlickrPhotoTVC.m in Sources */,
 				94CCF67A16D55EDF00DF3B53 /* FeaturedFlickerTagTVC.m in Sources */,
+				94D7D3D216D5C3890045DBFE /* FlickrRecentImages.m in Sources */,
+				94D7D3D516D5C6200045DBFE /* RZTools.m in Sources */,
+				94D7D3D816D5CEAF0045DBFE /* RecentFlickrPhotoTVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
