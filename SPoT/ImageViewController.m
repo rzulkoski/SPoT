@@ -5,12 +5,17 @@
 //  Created by CS193p Instructor.
 //  Copyright (c) 2013 Stanford University. All rights reserved.
 //
+//  Auto-Zooming functionality added by Ryan Zulkoski on 02/20/2013
 
 #import "ImageViewController.h"
+
+#define MINIMUM_ZOOM_SCALE 0.2
+#define MAXIMUM_ZOOM_SCALE 5.0
 
 @interface ImageViewController () <UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) UIImageView *imageView;
+@property (nonatomic) BOOL userDidZoom; // Tracks if the user has manually zoomed the image
 @end
 
 @implementation ImageViewController
@@ -33,6 +38,7 @@
     if (self.scrollView) {
         self.scrollView.contentSize = CGSizeZero;
         self.imageView.image = nil;
+        self.userDidZoom = NO;
         
         NSData *imageData = [[NSData alloc] initWithContentsOfURL:self.imageURL];
         UIImage *image = [[UIImage alloc] initWithData:imageData];
@@ -42,6 +48,29 @@
             self.imageView.image = image;
             self.imageView.frame = CGRectMake(0, 0, image.size.width, image.size.height);
         }
+    }
+}
+
+// When subviews get laid out, try to autozoom.
+- (void)viewDidLayoutSubviews
+{
+    [self autoZoom];
+}
+
+// When zooming is detected, set userDidZoom flag to YES
+- (void)scrollViewDidZoom:(UIScrollView *)scrollView
+{
+    self.userDidZoom = YES;
+}
+
+// This function will automatically set the zoom to show as much of the image as possible without showing any empty space.
+- (void)autoZoom
+{
+    if (self.imageView.image && !self.userDidZoom) { // If the imageView has an image set and the user hasn't manually zoomed yet, autozoom.
+        CGFloat widthRatio  = self.scrollView.bounds.size.width  / self.imageView.bounds.size.width;
+        CGFloat heightRatio = self.scrollView.bounds.size.height / self.imageView.bounds.size.height;
+        self.scrollView.zoomScale = (widthRatio > heightRatio) ? widthRatio : heightRatio;
+        self.userDidZoom = NO; // Setting the zoom on the previous line triggered scrollViewDidZoom, but since we know that we did the zooming we need to set the userDidZoom flag back to NO
     }
 }
 
@@ -71,8 +100,8 @@
 {
     [super viewDidLoad];
     [self.scrollView addSubview:self.imageView];
-    self.scrollView.minimumZoomScale = 0.2;
-    self.scrollView.maximumZoomScale = 5.0;
+    self.scrollView.minimumZoomScale = MINIMUM_ZOOM_SCALE;
+    self.scrollView.maximumZoomScale = MAXIMUM_ZOOM_SCALE;
     self.scrollView.delegate = self;
     [self resetImage];
 }
