@@ -97,7 +97,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8f2-hW-NIt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2110" y="217"/>
+            <point key="canvasLocation" x="2152" y="653"/>
         </scene>
         <!--Flickr PhotoTVC-->
         <scene sceneID="CCx-I3-zze">
@@ -184,35 +184,6 @@
             </objects>
             <point key="canvasLocation" x="772" y="959"/>
         </scene>
-        <!--Image View Controller-->
-        <scene sceneID="651-EN-ffH">
-            <objects>
-                <viewController id="gmd-j3-HxV" customClass="ImageViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="sZ4-KW-YlP">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UNN-Ao-YPn">
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                            </scrollView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="UNN-Ao-YPn" firstAttribute="trailing" secondItem="sZ4-KW-YlP" secondAttribute="trailing" type="default" id="CNQ-YF-u4b"/>
-                            <constraint firstItem="UNN-Ao-YPn" firstAttribute="leading" secondItem="sZ4-KW-YlP" secondAttribute="leading" type="default" id="XXi-fR-5AB"/>
-                            <constraint firstItem="UNN-Ao-YPn" firstAttribute="top" secondItem="sZ4-KW-YlP" secondAttribute="top" type="default" id="wlc-wQ-9rj"/>
-                            <constraint firstItem="UNN-Ao-YPn" firstAttribute="bottom" secondItem="sZ4-KW-YlP" secondAttribute="bottom" type="default" id="xk4-bl-MR8"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="UpW-ZJ-lbs"/>
-                    <connections>
-                        <outlet property="scrollView" destination="UNN-Ao-YPn" id="JAm-O9-Pu0"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oK3-Fl-4Wp" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1675" y="959"/>
-        </scene>
         <!--Recent Flickr PhotoTVC-->
         <scene sceneID="2IQ-eh-Mxx">
             <objects>
@@ -245,7 +216,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
-                                    <segue destination="gmd-j3-HxV" kind="push" identifier="Show Image" id="SKr-bO-fvQ"/>
+                                    <segue destination="SQb-kJ-iX6" kind="push" identifier="Show Image" id="DrJ-lD-ucP"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -286,4 +257,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="DrJ-lD-ucP"/>
+    </inferredMetricsTieBreakers>
 </document>
