@@ -22,6 +22,7 @@
 
 @implementation FeaturedFlickerTagTVC
 
+// If photos hasn't been set yet, fetch Stanford photos from Flickr using Professor Hagerty's Flickr Helper code.
 - (NSArray *)photos
 {
     if (!_photos) {
@@ -31,12 +32,17 @@
     return _photos;
 }
 
+// If tags hasn't been set yet, set them to be the parsed tags. (which will use the photos to do so)
 - (NSArray *)tags
 {
     if (!_tags) _tags = [self parseTags];
     return _tags;
 }
 
+// Looks at every tag for each photo in photos (if the tag isn't to be ignored) and compares it with an array of tag dictionaries that it is building as it goes.
+// If a tag has not been seen before, create a new dictionary storing the tag description and an array of indexes into the photos array that denotes each photo
+// where this tag appears. If the tag is already in the array, add the index of the photo within the photos array to the tag dictionary's array of photo indexes
+// that use the tag. After the array of tag dictionaries is assembled, sort it alphabetically by tag description and return the sorted array.
 - (NSArray *)parseTags
 {
     NSMutableArray *tags = [[NSMutableArray alloc] init];
@@ -81,8 +87,8 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Flickr Tag" forIndexPath:indexPath];
     int tagCount = [self.tags[indexPath.row][TAG_INDEXES_OF_PHOTOS] count];
 
-    cell.textLabel.text = [self titleForRow:indexPath.row];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d photo%@", tagCount, (tagCount == 1) ? @"" : @"s"];
+    cell.textLabel.text = [self titleForRow:indexPath.row]; // Make title be the description of the tag.
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d photo%@", tagCount, (tagCount == 1) ? @"" : @"s"]; // Make subtitle be the number of photos that use the tag.
     
     return cell;
 }
@@ -108,6 +114,7 @@
     }
 }
 
+// Assemble an array of photos that include the specified tag by using the tag's dictionary to retrieve the array of indexes of photos that use the tag.
 - (NSArray *)arrayOfPhotosWithTag:(NSString *)tag
 {
     NSMutableArray *photos = [[NSMutableArray alloc] init];
