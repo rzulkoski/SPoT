@@ -15,10 +15,17 @@
 @interface ImageViewController () <UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *titleBarButtonItem;
 @property (nonatomic) BOOL userDidZoom; // Tracks if the user has manually zoomed the image
 @end
 
 @implementation ImageViewController
+
+- (void)setTitle:(NSString *)title
+{
+    super.title = title;
+    self.titleBarButtonItem.title = title;
+}
 
 // resets the image whenever the URL changes
 
@@ -103,6 +110,7 @@
     self.scrollView.minimumZoomScale = MINIMUM_ZOOM_SCALE;
     self.scrollView.maximumZoomScale = MAXIMUM_ZOOM_SCALE;
     self.scrollView.delegate = self;
+    self.titleBarButtonItem.title = self.title;
     [self resetImage];
 }
 

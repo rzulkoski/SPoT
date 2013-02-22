@@ -52,12 +52,17 @@
 + (NSArray *)getImages
 {
     NSArray *recentImages = [[NSUserDefaults standardUserDefaults] arrayForKey:RECENT_IMAGES_KEY];
-    NSMutableArray *sortedRecentImages = [[RZTools sortArrayOfDictionaries:recentImages usingKey:FLICKR_LAST_VIEWED_KEY ascending:NO] mutableCopy];
+    if (recentImages) {
+        NSMutableArray *sortedRecentImages = [[RZTools sortArrayOfDictionaries:recentImages usingKey:FLICKR_LAST_VIEWED_KEY ascending:NO] mutableCopy];
+        
+        while ([sortedRecentImages count] > MAX_RECENT_IMAGES) {
+            [sortedRecentImages removeLastObject];
+        }
 
-    while ([sortedRecentImages count] > MAX_RECENT_IMAGES) {
-        [sortedRecentImages removeLastObject];
+        return [sortedRecentImages copy];
+    } else {
+       return [[NSArray alloc] init]; 
     }
-    return [sortedRecentImages copy];
 }
 
 @end
