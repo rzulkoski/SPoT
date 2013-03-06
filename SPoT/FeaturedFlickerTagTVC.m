@@ -22,14 +22,34 @@
 
 @implementation FeaturedFlickerTagTVC
 
-// If photos hasn't been set yet, fetch Stanford photos from Flickr using Professor Hagerty's Flickr Helper code.
-- (NSArray *)photos
+- (void)viewDidLoad
 {
-    if (!_photos) {
-        _photos = [FlickrFetcher stanfordPhotos];
-        self.tags = nil;
-    }
-    return _photos;
+    // a UIRefreshControl inherits from UIControl, so we can use normal target/action // this is the first time you’ve seen this done without ctrl-dragging in Xcode
+    [self loadFeaturedPhotosFromFlickr];
+    [self.refreshControl addTarget:self
+                            action:@selector(loadFeaturedPhotosFromFlickr)
+                  forControlEvents:UIControlEventValueChanged];
+}
+
+// If photos hasn't been set yet, fetch Stanford photos from Flickr using Professor Hagerty's Flickr Helper code.
+- (void)setPhotos:(NSArray *)photos
+{
+    _photos = photos;
+    self.tags = nil;
+    [self.tableView reloadData];
+}
+
+- (IBAction)loadFeaturedPhotosFromFlickr
+{
+    // show the spinner if it's not already showing
+    [self.refreshControl beginRefreshing];
+    dispatch_queue_t loaderQ = dispatch_queue_create("flickr featured loader", NULL); dispatch_async(loaderQ, ^{
+        NSArray *fetchedPhotos = [FlickrFetcher stanfordPhotos];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.photos = fetchedPhotos;
+            [self.refreshControl endRefreshing];
+        });
+    });
 }
 
 // If tags hasn't been set yet, set them to be the parsed tags. (which will use the photos to do so)

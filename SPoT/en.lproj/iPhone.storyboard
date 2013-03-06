@@ -65,6 +65,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="xtP-bq-CWy"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="nTM-qs-hB1">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FTG-Zi-Rqr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -78,6 +81,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="NxY-R0-NwD"/>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dIp-vU-X5z">
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </scrollView>
@@ -86,13 +90,16 @@
                         <constraints>
                             <constraint firstItem="dIp-vU-X5z" firstAttribute="trailing" secondItem="S5V-DS-fFx" secondAttribute="trailing" type="default" id="Qon-oc-t4b"/>
                             <constraint firstItem="dIp-vU-X5z" firstAttribute="top" secondItem="S5V-DS-fFx" secondAttribute="top" type="default" id="WNQ-BX-Epg"/>
+                            <constraint firstItem="NxY-R0-NwD" firstAttribute="centerX" secondItem="dIp-vU-X5z" secondAttribute="centerX" type="default" id="maD-ZQ-9e3"/>
                             <constraint firstItem="dIp-vU-X5z" firstAttribute="bottom" secondItem="S5V-DS-fFx" secondAttribute="bottom" type="default" id="rLr-zP-rdD"/>
+                            <constraint firstItem="NxY-R0-NwD" firstAttribute="top" secondItem="S5V-DS-fFx" secondAttribute="top" constant="218" id="tGN-Er-1Qk"/>
                             <constraint firstItem="dIp-vU-X5z" firstAttribute="leading" secondItem="S5V-DS-fFx" secondAttribute="leading" type="default" id="tPT-2G-Yk0"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="dKF-Oq-TfM"/>
                     <connections>
                         <outlet property="scrollView" destination="dIp-vU-X5z" id="ONV-xX-1ca"/>
+                        <outlet property="spinner" destination="NxY-R0-NwD" id="6Ay-kG-tXl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8f2-hW-NIt" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -243,6 +250,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ImageViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="spinner" candidateClass="UIActivityIndicatorView"/>
                 <relationship kind="outlet" name="titleBarButtonItem" candidateClass="UIBarButtonItem"/>
             </relationships>
         </class>
@@ -251,6 +259,9 @@
         </class>
         <class className="RecentFlickrPhotoTVC" superclassName="FlickrPhotoTVC">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RecentFlickrPhotoTVC.h"/>
+        </class>
+        <class className="UIRefreshControl" superclassName="UIControl">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIRefreshControl.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
