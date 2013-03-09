@@ -8,6 +8,8 @@
 
 #import "RZTools.h"
 
+uint networkReferenceCount = 0;
+
 @implementation RZTools
 
 // Takes an NSArray of NSDictionaries and sorts it by
@@ -19,6 +21,20 @@
 {
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:key ascending:ascending];
     return [array sortedArrayUsingDescriptors:@[sortDescriptor]];
+}
+
++ (void)enableNetworkActivityIndicator {
+    networkReferenceCount++;
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+}
+
++ (void)disableNetworkActivityIndicator {
+    if (networkReferenceCount > 0) {
+        networkReferenceCount--;
+    }
+    if (networkReferenceCount == 0) {
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    }
 }
 
 @end

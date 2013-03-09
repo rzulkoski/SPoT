@@ -7,12 +7,14 @@
 //
 //  Auto-Zooming functionality added by Ryan Zulkoski on 02/20/2013
 
-#import "ImageViewController.h"
+#import "FlickrImageViewController.h"
+#import "RZTools.h"
+#import "FlickrPhotoCache.h"
 
 #define MINIMUM_ZOOM_SCALE 0.2
 #define MAXIMUM_ZOOM_SCALE 5.0
 
-@interface ImageViewController () <UIScrollViewDelegate>
+@interface FlickrImageViewController () <UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *titleBarButtonItem;
@@ -21,7 +23,7 @@
 
 @end
 
-@implementation ImageViewController
+@implementation FlickrImageViewController
 
 - (void)setTitle:(NSString *)title
 {
@@ -31,9 +33,9 @@
 
 // resets the image whenever the URL changes
 
-- (void)setImageURL:(NSURL *)imageURL
+- (void)setPhoto:(NSDictionary *)photo
 {
-    _imageURL = imageURL;
+    _photo = photo;
     [self resetImage];
 }
 
@@ -49,23 +51,19 @@
         self.imageView.image = nil;
         
         [self.spinner startAnimating];
-        NSURL *imageURL = self.imageURL;
         dispatch_queue_t imageFetchQ = dispatch_queue_create("image fetcher", NULL);
         dispatch_async(imageFetchQ, ^{
-            NSData *imageData = [[NSData alloc] initWithContentsOfURL:self.imageURL];
-            UIImage *image = [[UIImage alloc] initWithData:imageData];
-            if (self.imageURL == imageURL) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    if (image) {
-                        self.scrollView.zoomScale = 1.0;
-                        self.scrollView.contentSize = image.size;
-                        self.imageView.image = image;
-                        self.imageView.frame = CGRectMake(0, 0, image.size.width, image.size.height);
-                        [self autoZoom];
-                    }
-                    [self.spinner stopAnimating];
-                });
-            }
+            UIImage *image = [FlickrPhotoCache fetchImageForPhoto:self.photo];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (image) {
+                    self.scrollView.zoomScale = 1.0;
+                    self.scrollView.contentSize = image.size;
+                    self.imageView.image = image;
+                    self.imageView.frame = CGRectMake(0, 0, image.size.width, image.size.height);
+                    [self autoZoom];
+                }
+                [self.spinner stopAnimating];
+            });
         });
     }
 }

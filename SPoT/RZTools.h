@@ -15,4 +15,7 @@
                             usingKey:(NSString *)key  // a key into the dictionaries in the order specified.
                            ascending:(BOOL)ascending; // It will then return the sorted array of dictionaries.
 
++ (void)enableNetworkActivityIndicator;
++ (void)disableNetworkActivityIndicator;
+
 @end

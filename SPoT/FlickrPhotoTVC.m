@@ -36,9 +36,8 @@
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
         if (indexPath) {
             if ([segue.identifier isEqualToString:@"Show Image"]) {
-                if ([segue.destinationViewController respondsToSelector:@selector(setImageURL:)]) {
-                    NSURL *url = [FlickrFetcher urlForPhoto:self.photos[indexPath.row] format:FlickrPhotoFormatLarge];
-                    [segue.destinationViewController performSelector:@selector(setImageURL:) withObject:url];
+                if ([segue.destinationViewController respondsToSelector:@selector(setPhoto:)]) {
+                    [segue.destinationViewController performSelector:@selector(setPhoto:) withObject:self.photos[indexPath.row]];
                     [segue.destinationViewController setTitle:[self titleForRow:indexPath.row]];
                     [FlickrRecentImages addImage:self.photos[indexPath.row]]; // Store this image as most recent image in NSUserDefaults
                 }

@@ -73,26 +73,26 @@
             </objects>
             <point key="canvasLocation" x="1227" y="217"/>
         </scene>
-        <!--Image View Controller-->
+        <!--Flickr Image View Controller-->
         <scene sceneID="JfW-f6-9Xb">
             <objects>
-                <viewController id="SQb-kJ-iX6" customClass="ImageViewController" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="SQb-kJ-iX6" customClass="FlickrImageViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="S5V-DS-fFx">
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="NxY-R0-NwD"/>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dIp-vU-X5z">
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                            </scrollView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dIp-vU-X5z"/>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="NxY-R0-NwD">
+                                <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </activityIndicatorView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="dIp-vU-X5z" firstAttribute="trailing" secondItem="S5V-DS-fFx" secondAttribute="trailing" type="default" id="Qon-oc-t4b"/>
                             <constraint firstItem="dIp-vU-X5z" firstAttribute="top" secondItem="S5V-DS-fFx" secondAttribute="top" type="default" id="WNQ-BX-Epg"/>
                             <constraint firstItem="NxY-R0-NwD" firstAttribute="centerX" secondItem="dIp-vU-X5z" secondAttribute="centerX" type="default" id="maD-ZQ-9e3"/>
                             <constraint firstItem="dIp-vU-X5z" firstAttribute="bottom" secondItem="S5V-DS-fFx" secondAttribute="bottom" type="default" id="rLr-zP-rdD"/>
-                            <constraint firstItem="NxY-R0-NwD" firstAttribute="top" secondItem="S5V-DS-fFx" secondAttribute="top" constant="218" id="tGN-Er-1Qk"/>
+                            <constraint firstAttribute="centerY" secondItem="NxY-R0-NwD" secondAttribute="centerY" type="user" id="rt4-IE-rlq"/>
                             <constraint firstItem="dIp-vU-X5z" firstAttribute="leading" secondItem="S5V-DS-fFx" secondAttribute="leading" type="default" id="tPT-2G-Yk0"/>
                         </constraints>
                     </view>
@@ -245,14 +245,6 @@
         </class>
         <class className="FlickrPhotoTVC" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FlickrPhotoTVC.h"/>
-        </class>
-        <class className="ImageViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ImageViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="spinner" candidateClass="UIActivityIndicatorView"/>
-                <relationship kind="outlet" name="titleBarButtonItem" candidateClass="UIBarButtonItem"/>
-            </relationships>
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
